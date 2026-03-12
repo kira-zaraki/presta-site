@@ -1,0 +1,42 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: ps-db
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_DATABASE=prestashop
+    networks:
+      - prestashop-net
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: ps-phpmyadmin
+    links:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_ARBITRARY: 1
+    ports:
+      - "8081:80"
+    networks:
+      - prestashop-net
+
+  prestashop:
+    image: prestashop/prestashop:latest
+    container_name: ps-main
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    environment:
+      - DB_SERVER=db
+      - DB_USER=root
+      - DB_PASSWD=admin
+      - DB_NAME=prestashop
+      - PS_DEV_MODE=1
+    networks:
+      - prestashop-net
+
+networks:
+  prestashop-net:
+    driver: bridge
