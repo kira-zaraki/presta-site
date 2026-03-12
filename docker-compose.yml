@@ -11,11 +11,12 @@ services:
   phpmyadmin:
     image: phpmyadmin:latest
     container_name: ps-phpmyadmin
-    links:
+    depends_on:
       - db
     environment:
       PMA_HOST: db
-      PMA_ARBITRARY: 1
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: admin
     ports:
       - "8081:80"
     networks:
@@ -34,6 +35,8 @@ services:
       - DB_PASSWD=admin
       - DB_NAME=prestashop
       - PS_DEV_MODE=1
+    volumes:
+      - ./prestashop:/var/www/html
     networks:
       - prestashop-net
 
