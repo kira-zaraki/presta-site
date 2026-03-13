@@ -1,3 +1,3 @@
 [submodule "modules/ps_module_expiry_date"]
 	path = modules/ps_module_expiry_date
-	url = https://github.com/kira-zaraki/ps_module_expiry_date
+	url = https://github.com/kira-zaraki/ps-module-expiry-date
