@@ -1,0 +1,5 @@
+parent: hummingbird
+name: hummingbird-child
+display_name: Mon Thème Hummingbird Enfant
+assets:
+  use_parent_assets: true

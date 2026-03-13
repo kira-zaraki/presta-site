@@ -35,8 +35,11 @@ services:
       - DB_PASSWD=admin
       - DB_NAME=prestashop
       - PS_DEV_MODE=1
+      - PS_FOLDER_ADMIN=admin-dev
+      - PS_FOLDER_INSTALL=install-script
     volumes:
-      - ./prestashop:/var/www/html
+      - ./themes/hummingbird-child:/var/www/html/themes/hummingbird-child
+      - ./modules:/var/www/html/modules
     networks:
       - prestashop-net
 
